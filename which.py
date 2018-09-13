@@ -2,8 +2,6 @@ import fnmatch
 import os
 import sys
 
-
-
 def usage() :
     print 'which -p <command>'
     exit()
@@ -24,6 +22,8 @@ def check_exact(dir, file2find) :
 
 def find_in_dirs(dirs, file2find) :
     for dir in dirs :
+        if dir == '':
+            continue
         result = check_exact(dir, file2find)
         if result == True :
             print 'found in ' + dir + '\\' + file2find
@@ -33,8 +33,7 @@ def find_in_dirs(dirs, file2find) :
 
 
 
-
-roots = [] # ["c:\\bin", "c:\\bin\py"]
+dirs  = (os.environ['PATH']).split(';')
 show_dirs = False
 file2find = ''
 
@@ -47,11 +46,7 @@ if len(sys.argv) == 3:
 else :
     file2find = sys.argv[1]
     
-path_dirs = (os.environ['PATH']).split(';')
-for dir in path_dirs:
-    if dir != '':
-        roots.append(dir)
 
-find_in_dirs(roots, file2find)
+find_in_dirs(dirs, file2find)
 
 
