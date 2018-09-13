@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DavisSquareUtils
+namespace CmdUtils
 {
     class which
     {
@@ -20,7 +18,7 @@ namespace DavisSquareUtils
             if (command_name.Contains("."))
                 exact_match(command_name, show_paths);
             else
-                fuzzy_match(command_name);
+                fuzzy_match(command_name, show_paths);
         }
 
         static IEnumerable<string> get_path_dirs()
@@ -32,10 +30,6 @@ namespace DavisSquareUtils
         static void fail(string command_name)
             => Console.WriteLine("Command: " + command_name + " not found in path.");
 
-
-        /* user entered command with extension. only match on exact match. 
-         * (as opposed to checking <command>.exe, <command>.com, etc...
-         */
         static void exact_match(string command_name, bool show_paths)
         {
             foreach (var dir in get_path_dirs())
@@ -78,7 +72,7 @@ namespace DavisSquareUtils
                     : new string[] { ".com", ".exe", ".bat", ".cmd" }; 
         }
 
-        static void fuzzy_match(string command_name)
+        static void fuzzy_match(string command_name, bool show_paths)
         {
             var path_dirs =
                 get_path_dirs();
@@ -88,6 +82,9 @@ namespace DavisSquareUtils
 
             foreach (var dir in path_dirs)
             {
+                if (show_paths)
+                    Console.WriteLine("Searching " + dir);
+
                 try
                 {
                     var loose_matches = 
