@@ -5,9 +5,9 @@ parameters:
   -p shows directories during search
 
 languages currently implemented:
-c#
-python
-nodejs
+- c#
+- python
+- nodejs
 
 
 
