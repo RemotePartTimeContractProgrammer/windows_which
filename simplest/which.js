@@ -1,6 +1,5 @@
 var fs = require('fs')
 
-let found = false
 let syspath_folders = process.env.path.split(';').filter(dir => dir != "")
 
 for (let i = 0; i < syspath_folders.length; i++) {
