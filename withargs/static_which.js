@@ -33,14 +33,13 @@ class static_which {
                 show_paths = true
             else {
                 if (cmd != "")
-                static_which.usage("command set twice")
+                    static_which.usage("command set twice")
                 cmd = process.argv[i]
             }
         }
 
-        let syspath = process.env.path
-        let syspath_folders = syspath.split(';').filter(dir => dir != "")
-        let found = false
+        let syspath_folders = process.env.path.split(';').filter(dir => dir != "")
+        let found = null;
 
         for (let i = 0; i < syspath_folders.length; i++) {
             let dir = syspath_folders[i]
@@ -49,14 +48,15 @@ class static_which {
                 static_which.log(dir)
 
             if (static_which.check_exact(dir, cmd)) {
-                static_which.log('Found in: ' + dir)
-                found = true
+                found = dir
                 break
             }
         }
 
-        if (!found)
-            static_which.log('command not found')
+        static_which.log(
+            (found)
+            ? "found in " + found
+            : "command not found");
     }
 
 }
