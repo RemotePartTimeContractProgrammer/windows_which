@@ -2,7 +2,7 @@
 simple implementations of the which command for windows
 
 parameters:
-  -p shows directories during search
+- -p shows directories during search
 
 languages currently implemented:
 - c#
