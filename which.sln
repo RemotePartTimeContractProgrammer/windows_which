@@ -3,12 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "which", "which\which.csproj", "{ADC58A0B-8E22-4601-ABF5-508AB45C08C4}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "python", "python", "{092482BB-C0CF-40F9-B2F2-2B562F2BADF5}"
-	ProjectSection(SolutionItems) = preProject
-		which.py = which.py
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "which", "withargs\cs\which.csproj", "{ADC58A0B-8E22-4601-ABF5-508AB45C08C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
