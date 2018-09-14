@@ -1,31 +1,29 @@
 var fs = require('fs')
 
+class static_which {
+    static log(msg) { console.log(msg) }
 
-class which {
-    log(msg) { console.log(msg) }
-
-    usage(msg) {
+    static usage(msg) {
         if (msg)
-            this.log(msg)
-        this.log("Usage: " + __filename + " path/to/directory")
+            static_which.log(msg)
+        static_which.log("Usage: node " + __filename + " <command>")
         process.exit(-1)
     }
 
-    check_exact(dir, cmd) {
+    static check_exact(dir, cmd) {
         try {
             let files = fs.readdirSync(dir)
             return (files.filter(i => i == cmd).length == 1)
         } catch (ex) {
-            this.log('error: ' + ex)
+            static_which.log('error: ' + ex)
         }
 
         return false
     }
 
-    Resolve() {
-
+    static Resolve() {
         if (process.argv.length <= 2)
-            this.usage("")
+            static_which.usage("")
 
         let show_paths = false
         let cmd = ""
@@ -35,7 +33,7 @@ class which {
                 show_paths = true
             else {
                 if (cmd != "")
-                    this.usage("command set twice")
+                static_which.usage("command set twice")
                 cmd = process.argv[i]
             }
         }
@@ -48,21 +46,22 @@ class which {
             let dir = syspath_folders[i]
 
             if (show_paths)
-                this.log(dir)
+                static_which.log(dir)
 
-            if (this.check_exact(dir, cmd)) {
-                this.log('Found in: ' + dir)
+            if (static_which.check_exact(dir, cmd)) {
+                static_which.log('Found in: ' + dir)
                 found = true
                 break
             }
         }
 
         if (!found)
-            this.log('command not found')
+            static_which.log('command not found')
     }
 
 }
 
 
-new which().Resolve()
+static_which.Resolve()
+
 
