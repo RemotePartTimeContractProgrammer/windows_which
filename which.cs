@@ -9,25 +9,15 @@ namespace CmdUtils
     {
         static void Main(string[] args)
         {
-            if (args.Length != 1)
-            {
-                Console.WriteLine("no command specified");
-                return;
-            }
-
-            string command = args[0];
-
-            var path_dirs = Environment.GetEnvironmentVariable("PATH")
+            var result = Environment.GetEnvironmentVariable("PATH")
                 .Split(';')
                 .Where(dir => dir != null && dir != "")
-                .ToList();
-
-            var first = path_dirs
-                .FirstOrDefault(dir => System.IO.File.Exists(dir + "\\" + command));
+                .ToList()
+                .FirstOrDefault(dir => System.IO.File.Exists(dir + "\\" + args[0]));
 
             Console.WriteLine(
-                (first != null)
-                ? "command found at " + first + "\\" + command
+                (result != null)
+                ? "command found at " + result + "\\" + args[0]
                 : "command not found");
         }
     }
