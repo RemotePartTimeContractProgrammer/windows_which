@@ -10,6 +10,7 @@ languages currently implemented:
 - nodejs
 - php
 - perl
+- f#
 
 
 

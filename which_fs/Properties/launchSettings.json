@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "which_fs": {
+      "commandName": "Project",
+      "commandLineArgs": "npp.bat"
+    }
+  }
+}
